@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Алексей Шибанов](https://up.htmlacademy.ru/javascript/22/user/1111389).
-* Наставник: `Неизвестно`.
+* Наставник: [Elizaveta Kryazhkova](https://htmlacademy.ru/profile/id320787).
 
 ---
 
