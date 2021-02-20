@@ -75,12 +75,14 @@ const createObj = (idPerson, urlPerson) => {
     url: 'photos/'+ urlPerson + '.jpg',
     description: DESCRIPTIONS[descriptionOfPhoto],
     likes: likesOfPhoto,
-    comments: [{
-      otherId: idOtherPerson,
-      avatar: 'img/avatar' + avatarOfPhoto + '.svg' ,
-      message: MESSAGES[commentOfPhoto],
-      name: NAMES[nameOfPerson],
-    }]
+    comments: [
+      {
+        otherId: idOtherPerson,
+        avatar: 'img/avatar' + avatarOfPhoto + '.svg' ,
+        message: MESSAGES[commentOfPhoto],
+        name: NAMES[nameOfPerson],
+      },
+    ],
   }
 }
 
@@ -91,4 +93,4 @@ for (let i = 0; i < 25; i++) {
   resultArr.push(createObj(idOfPerson[i],urlPerson[i]));
 }
 
-console.log(resultArr);
+alert(resultArr);
