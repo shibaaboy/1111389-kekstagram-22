@@ -5,7 +5,7 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
 }
 
-alert(getRandomIntInclusive( 1, 25 ));
+alert(getRandomIntInclusive(1, 25));
 
 function getRandomArrayInt(min, max) {
   let numReserve = []
@@ -25,15 +25,15 @@ function getRandomArrayInt(min, max) {
   return numReserve;
 }
 
-function checkLength (stringCheck, maxLenght) {
-    if (stringCheck.length <= maxLenght) {
-      return true;
-    } else {
-      return false;
-    }
+function checkLength(stringCheck, maxLenght) {
+  if (stringCheck.length <= maxLenght) {
+    return true;
+  } else {
+    return false;
   }
+}
 
-  alert(checkLength( 'hello', 5 ));
+alert(checkLength('hello', 5));
 
 const DESCRIPTIONS = [
   'Хорошая фотография',
@@ -72,25 +72,23 @@ const createObj = (idPerson, urlPerson) => {
 
   return {
     id: idPerson,
-    url: 'photos/'+ urlPerson + '.jpg',
+    url: 'photos/' + urlPerson + '.jpg',
     description: DESCRIPTIONS[descriptionOfPhoto],
     likes: likesOfPhoto,
-    comments: [
-      {
-        otherId: idOtherPerson,
-        avatar: 'img/avatar' + avatarOfPhoto + '.svg' ,
-        message: MESSAGES[commentOfPhoto],
-        name: NAMES[nameOfPerson],
-      },
-    ],
+    comments: [{
+      otherId: idOtherPerson,
+      avatar: 'img/avatar' + avatarOfPhoto + '.svg',
+      message: MESSAGES[commentOfPhoto],
+      name: NAMES[nameOfPerson],
+    } ],
   }
 }
 
-let idOfPerson = getRandomArrayInt(1, 25); 
-let urlPerson = getRandomArrayInt(1, 25); 
-let resultArr = []; 
+let idOfPerson = getRandomArrayInt(1, 25);
+let urlPerson = getRandomArrayInt(1, 25);
+let resultArr = [];
 for (let i = 0; i < 25; i++) {
-  resultArr.push(createObj(idOfPerson[i],urlPerson[i]));
+  resultArr.push(createObj(idOfPerson[i], urlPerson[i]));
 }
 
 alert(resultArr);
