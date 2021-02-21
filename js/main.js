@@ -5,6 +5,8 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
 }
 
+alert(getRandomIntInclusive( 1, 25 ));
+
 function getRandomArrayInt(min, max) {
   let numReserve = []
   while (numReserve.length < 25) {
@@ -23,17 +25,15 @@ function getRandomArrayInt(min, max) {
   return numReserve;
 }
 
-// alert(getRandomIntInclusive( 1, 25 ));
+function checkLength (stringCheck, maxLenght) {
+    if (stringCheck.length <= maxLenght) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-// function checkLength (stringCheck, maxLenght) {
-//     if (stringCheck.length <= maxLenght) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-//   }
-
-//   alert(checkLength( 'hello', 5 ));
+  alert(checkLength( 'hello', 5 ));
 
 const DESCRIPTIONS = [
   'Хорошая фотография',
