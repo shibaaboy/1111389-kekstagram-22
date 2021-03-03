@@ -5,7 +5,6 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
 }
 
-alert(getRandomIntInclusive(1, 25));
 
 function getRandomArrayInt(min, max) {
   let numReserve = []
@@ -33,6 +32,6 @@ function checkLength(stringCheck, maxLenght) {
   }
 }
 
-alert(checkLength('hello', 5));
+alert(checkLength(10));
 
 export {getRandomIntInclusive, getRandomArrayInt};
