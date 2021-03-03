@@ -45,7 +45,8 @@ const createObj = (idPerson, urlPerson) => {
       avatar: 'img/avatar' + avatarOfPhoto + '.svg',
       message: MESSAGES[commentOfPhoto],
       name: NAMES[nameOfPerson],
-    } ],
+    }, 
+    ],
   }
 }
 
