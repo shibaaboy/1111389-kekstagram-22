@@ -60,6 +60,6 @@ const createObjs = function () {
   return resultArr;
 }
 
-alert(createObjs());
+console.log(createObjs());
 
 export {DESCRIPTIONS, MESSAGES, NAMES, createObj, createObjs};
