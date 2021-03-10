@@ -24,14 +24,4 @@ function getRandomArrayInt(min, max) {
   return numReserve;
 }
 
-function checkLength(stringCheck, maxLenght) {
-  if (stringCheck.length <= maxLenght) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-alert(checkLength(10));
-
 export {getRandomIntInclusive, getRandomArrayInt};

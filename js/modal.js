@@ -8,7 +8,6 @@ let likesCount = document.querySelector('.likes-count');
 
 
 picturesElement.addEventListener('click', (evt) => {
-  // console.log(evt.target);
   let parent = evt.target.parentElement;
   popup.classList.remove('hidden');
   body.classList.add('modal-open');
@@ -18,16 +17,18 @@ picturesElement.addEventListener('click', (evt) => {
   let bigPicture = popup.querySelector('.big-picture__img img');
   bigPicture.src = evt.target.attributes[1].nodeValue;
 
-  let id = parent.getAttribute('data-id');
-  alert(id);
+  let socialPicture = popup.querySelector('.social__picture');
+  socialPicture.src = evt.target.parentNode.dataset.avatar;
+  socialPicture.alt = evt.target.parentNode.dataset.name;
+  
+  let socialText = popup.querySelector('.social__text');
+  socialText.textContent = evt.target.parentNode.dataset.message;
 
   let likes = parent.getAttribute('data-likes');
-  alert(likes);
-
   likesCount.textContent = likes;
 
-  let comment = parent.getAttribute('data-comments');
-  alert(comment);
+  let socialCaption = popup.querySelector('.social__caption');
+  socialCaption.textContent = evt.target.parentNode.dataset.description;
 });
 
 closePopup.addEventListener('click', function (evt) {

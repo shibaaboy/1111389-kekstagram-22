@@ -42,7 +42,7 @@ const createObj = (idPerson, urlPerson) => {
     likes: likesOfPhoto,
     comments: [{
       otherId: idOtherPerson,
-      avatar: 'img/avatar' + avatarOfPhoto + '.svg',
+      avatar: 'img/avatar-' + avatarOfPhoto + '.svg',
       message: MESSAGES[commentOfPhoto],
       name: NAMES[nameOfPerson],
     }, 
@@ -59,7 +59,5 @@ const createObjs = function () {
   }
   return resultArr;
 }
-
-// alert(createObjs());
 
 export {DESCRIPTIONS, MESSAGES, NAMES, createObj, createObjs};
