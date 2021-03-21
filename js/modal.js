@@ -1,3 +1,8 @@
+import {
+  textHashtags,
+  textDescription
+} from './hashtag.js';
+
 const picturesElement = document.querySelector('.pictures');
 let popup = document.querySelector('.big-picture');
 let closePopup = document.querySelector('.big-picture__cancel');
@@ -29,6 +34,9 @@ picturesElement.addEventListener('click', (evt) => {
 
     let socialCaption = popup.querySelector('.social__caption');
     socialCaption.textContent = evt.target.parentNode.dataset.description;
+
+    textHashtags.addEventListener('input');
+    textDescription.addEventListener('input');
   }
 });
 
@@ -44,6 +52,20 @@ document.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 27) {
     popup.classList.add('hidden');
   }
+
+  if (textHashtags.focus) {
+    popup.classList.remove('hidden');
+    body.classList.add('modal-open');
+    commentCount.classList.add('hidden');
+    commentsLoader.classList.add('hidden');
+  } else {
+    popup.classList.add('hidden');
+    body.classList.remove('modal-open');
+    commentCount.classList.remove('hidden');
+    commentsLoader.classList.remove('hidden');
+  }
 });
 
-export {body};
+export {
+  body
+};
