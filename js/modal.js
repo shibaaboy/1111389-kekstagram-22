@@ -62,6 +62,4 @@ document.addEventListener('keydown', function (evt) {
   }
 });
 
-export {
-  body
-};
+export {body};
