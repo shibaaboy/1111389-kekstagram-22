@@ -1,6 +1,5 @@
 import {
   textHashtags,
-  textDescription
 } from './hashtag.js';
 
 const picturesElement = document.querySelector('.pictures');
@@ -34,9 +33,6 @@ picturesElement.addEventListener('click', (evt) => {
 
     let socialCaption = popup.querySelector('.social__caption');
     socialCaption.textContent = evt.target.parentNode.dataset.description;
-
-    textHashtags.addEventListener('input');
-    textDescription.addEventListener('input');
   }
 });
 
