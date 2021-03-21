@@ -55,7 +55,6 @@ scaleBigger.addEventListener('click', function (evt) {
   }
 });
 
-// let effectsRadio = document.querySelector('.effects__radio');
 let effectSlider = document.querySelector('.effect-level__slider');
 let effectValue = document.querySelector('.effect-level__value');
 let effectNone = document.querySelector('#effect-none');
