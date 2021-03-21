@@ -64,7 +64,7 @@ let effectMarvin = document.querySelector('#effect-marvin');
 let effectPhobos = document.querySelector('#effect-phobos');
 let effectHeat = document.querySelector('#effect-heat');
 
-noUiSlider.create(effectSlider, {
+window.noUiSlider.create(effectSlider, {
   range: {
     min: 0,
     max: 100,
