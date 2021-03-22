@@ -48,18 +48,6 @@ document.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 27) {
     popup.classList.add('hidden');
   }
-
-  if (textHashtags.focus) {
-    popup.classList.remove('hidden');
-    body.classList.add('modal-open');
-    commentCount.classList.add('hidden');
-    commentsLoader.classList.add('hidden');
-  } else {
-    popup.classList.add('hidden');
-    body.classList.remove('modal-open');
-    commentCount.classList.remove('hidden');
-    commentsLoader.classList.remove('hidden');
-  }
 });
 
 export {body};
