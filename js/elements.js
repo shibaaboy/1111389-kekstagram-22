@@ -28,5 +28,4 @@ similarPictures.forEach((photo) => {
 
 picturesElement.appendChild(pirctureFragment);
 
-
 export {similarPictures};
