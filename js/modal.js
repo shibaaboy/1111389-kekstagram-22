@@ -1,7 +1,3 @@
-import {
-  textHashtags,
-} from './hashtag.js';
-
 const picturesElement = document.querySelector('.pictures');
 let popup = document.querySelector('.big-picture');
 let closePopup = document.querySelector('.big-picture__cancel');
@@ -50,4 +46,4 @@ document.addEventListener('keydown', function (evt) {
   }
 });
 
-export {body};
+export {body, popup};
