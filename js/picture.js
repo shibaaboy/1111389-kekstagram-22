@@ -1,5 +1,5 @@
 import {textHashtags,textDescription} from './hashtag.js';
-import {body,popup} from './modal.js';
+import {body} from './modal.js';
 
 let uploadFile = document.querySelector('#upload-file');
 let uploadFileOpen = document.querySelector('.img-upload__overlay');
@@ -28,7 +28,7 @@ uploadFileClose.addEventListener('click', function (evt) {
 document.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 27) {
     if (evt.target !== textHashtags && evt.target !== textDescription) {
-      popup.classList.add('hidden');
+      uploadFileOpen.classList.add('hidden');
     }
   }
   uploadFile.value = '';
