@@ -1,10 +1,7 @@
-import {createObjs} from './data.js';
 import './modal.js';
 
 const picturesElement = document.querySelector('.pictures');
 const picture = document.querySelector('#picture').content;
-
-const similarPictures = createObjs();
 
 const pirctureFragment = document.createDocumentFragment();
 
