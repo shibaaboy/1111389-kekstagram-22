@@ -14,8 +14,14 @@ uploadFile.addEventListener('click', () => {
   uploadFileOpen.classList.remove('hidden');
   body.classList.add('modal-open');
   scaleValue.value = '100%';
-  imgUploadPreview.style.transform = 'scale(1)';
+  imgUploadPreview.className = 'img-upload__preview';
   sliderContainer.style.display = 'none';
+  imgUploadPreview.style.transform = 'scale(1)';
+  imgUploadPreview.style.removeProperty('filter');
+  textHashtags.style.border = '';
+  textDescription.style.border = '';
+  textHashtags.value = '';
+  textDescription.value = '';
 });
 
 uploadFileClose.addEventListener('click', function (evt) {
@@ -23,6 +29,16 @@ uploadFileClose.addEventListener('click', function (evt) {
   uploadFileOpen.classList.add('hidden');
   body.classList.remove('modal-open');
   uploadFile.value = '';
+  effectValue.value = '';
+  imgUploadPreview.style.removeProperty('filter');
+  scaleValue.value = '100%';
+  imgUploadPreview.style.transform = 'scale(1)';
+  imgUploadPreview.className = 'img-upload__preview';
+  sliderContainer.style.display = 'none';
+  textHashtags.style.border = '';
+  textHashtags.value = '';
+  textDescription.value = '';
+  textDescription.style.border = '';
 });
 
 document.addEventListener('keydown', function (evt) {
@@ -110,6 +126,7 @@ effectNone.addEventListener('click', function () {
   imgUploadPreview.className = 'img-upload__preview';
   imgUploadPreview.style.removeProperty('filter');
   sliderContainer.style.display = 'none';
+  effectValue.value = '';
 });
 
 effectChrome.addEventListener('click', function () {
@@ -176,3 +193,5 @@ effectHeat.addEventListener('click', function () {
     step: 0.1,
   });
 });
+
+export {uploadFileClose,uploadFileOpen};
