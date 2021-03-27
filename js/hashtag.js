@@ -1,7 +1,7 @@
 const textHashtags = document.querySelector('.text__hashtags');
 
 textHashtags.addEventListener('input', () => {
-  let textHashtagsArr = textHashtags.value.toLowerCase().split(' ');
+  let textHashtagsArr = textHashtags.value.trim().toLowerCase().split(/ +/g);
   let reg = /^#[0-9a-zA-Zа-яА-Я]+$/;
   for (let i = 0; i < textHashtagsArr.length; i++) {
     if (textHashtagsArr[i][0] !== '#') {
@@ -52,7 +52,6 @@ textDescription.addEventListener('input', () => {
       textDescription.classList.remove('errorClass');
       textDescription.style.border = '';
     }
-
     textDescription.reportValidity();
   }
 });
