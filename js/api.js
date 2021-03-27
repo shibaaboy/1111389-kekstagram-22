@@ -1,4 +1,6 @@
-import {uploadFileOpen} from './picture.js';
+import {
+  uploadFileOpen
+} from './picture.js';
 
 let imgUploadForm = document.querySelector('.img-upload__form');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
@@ -13,28 +15,49 @@ imgUploadForm.addEventListener('submit', (evt) => {
     method: 'POST',
     body: formData,
   })
-  .then((response) => {
-    if (response.ok) {
-      const successElement = successTemplate.cloneNode(true);
-      mainBlock.appendChild(successElement);
-      uploadFileOpen.classList.add('hidden');
-      const closeSuccessButton = document.querySelector('.success__button');
-      document.addEventListener('click', function (evt) {
-        if (evt.target !== successElement) {
-          successElement.remove();
-        }
-      });
-      document.addEventListener('keydown', function (evt) {
-        if (evt.keyCode === 27) {
-          successElement.remove();
-        }
-      });
-      closeSuccessButton.addEventListener('click', function (evt) {
-        if (evt.target !== successElement) {
-          successElement.remove();
-        }
-      });
-    } else {
+    .then((response) => {
+      if (response.ok) {
+        const successElement = successTemplate.cloneNode(true);
+        mainBlock.appendChild(successElement);
+        uploadFileOpen.classList.add('hidden');
+        const closeSuccessButton = document.querySelector('.success__button');
+        document.addEventListener('click', function (evt) {
+          if (evt.target !== successElement) {
+            successElement.remove();
+          }
+        });
+        document.addEventListener('keydown', function (evt) {
+          if (evt.keyCode === 27) {
+            successElement.remove();
+          }
+        });
+        closeSuccessButton.addEventListener('click', function (evt) {
+          if (evt.target !== successElement) {
+            successElement.remove();
+          }
+        });
+      } else {
+        const errorElement = errorTemplate.cloneNode(true);
+        mainBlock.appendChild(errorElement);
+        uploadFileOpen.classList.add('hidden');
+        const closeErrorButton = document.querySelector('.error__button');
+        document.addEventListener('click', function (evt) {
+          if (evt.target !== errorElement) {
+            errorElement.remove();
+          }
+        });
+        document.addEventListener('keydown', function (evt) {
+          if (evt.keyCode === 27) {
+            errorElement.remove();
+          }
+        });
+        closeErrorButton.addEventListener('click', function (evt) {
+          if (evt.target !== errorElement) {
+            errorElement.remove();
+          }
+        });
+      }
+    }).catch(() => {
       const errorElement = errorTemplate.cloneNode(true);
       mainBlock.appendChild(errorElement);
       uploadFileOpen.classList.add('hidden');
@@ -54,26 +77,5 @@ imgUploadForm.addEventListener('submit', (evt) => {
           errorElement.remove();
         }
       });
-    }
-  }).catch(() => {
-    const errorElement = errorTemplate.cloneNode(true);
-    mainBlock.appendChild(errorElement);
-    uploadFileOpen.classList.add('hidden');
-    const closeErrorButton = document.querySelector('.error__button');
-    document.addEventListener('click', function (evt) {
-      if (evt.target !== errorElement) {
-        errorElement.remove();
-      }
-    });
-    document.addEventListener('keydown', function (evt) {
-      if (evt.keyCode === 27) {
-        errorElement.remove();
-      }
-    });
-    closeErrorButton.addEventListener('click', function (evt) {
-      if (evt.target !== errorElement) {
-        errorElement.remove();
-      }
-    });
-  })
+    })
 });

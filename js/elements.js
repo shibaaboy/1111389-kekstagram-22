@@ -1,5 +1,5 @@
 import './modal.js';
-import {filterDefault,filterRandom,filterDiscussed} from './filter.js';
+import {filterDefault} from './filter.js';
 
 const picturesElement = document.querySelector('.pictures');
 const picture = document.querySelector('#picture').content;
