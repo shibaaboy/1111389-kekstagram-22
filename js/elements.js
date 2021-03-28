@@ -1,5 +1,7 @@
 import './modal.js';
-import {filterDefault} from './filter.js';
+import {
+  filterDefault
+} from './filter.js';
 
 const picturesElement = document.querySelector('.pictures');
 const picture = document.querySelector('#picture').content;
@@ -13,7 +15,11 @@ fetch('https://22.javascript.pages.academy/kekstagram/data')
     return response.json();
   })
   .then((similarPictures) => {
-    similarPictures.innerHTML = '';
+    // const picturesElements = document.querySelectorAll('#picture');
+    // for (let i = 0; i < 25; i++) {
+    //   console.log(picturesElements);
+    //   elem.removeChild(child);  тут писал document.rC(picturesElements); ошибка 
+    // }
     const renderPicture = (pictures) => {
       pictures.forEach((photo) => {
         const pictureElement = picture.cloneNode(true);
@@ -22,9 +28,9 @@ fetch('https://22.javascript.pages.academy/kekstagram/data')
         pictureElement.querySelector('.picture__likes').textContent = photo.likes;
         pictureElement.querySelector('.picture__comments').textContent = photo.comments.length;
         picturesElement.appendChild(pictureElement);
-  
+
         let pictureNode = picturesElement.lastElementChild;
-  
+
         pictureNode.setAttribute('data-likes', photo.likes);
         pictureNode.setAttribute('data-comments', photo.comments.length);
         pictureNode.setAttribute('data-avatar', photo.comments[0].avatar);
@@ -34,7 +40,7 @@ fetch('https://22.javascript.pages.academy/kekstagram/data')
       });
     };
     renderPicture(similarPictures);
-    filterDefault(similarPictures,renderPicture);
+    filterDefault(similarPictures, renderPicture);
   })
   .catch((err) => {
     alert(err);
