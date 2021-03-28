@@ -127,6 +127,7 @@ effectNone.addEventListener('click', function () {
   imgUploadPreview.style.removeProperty('filter');
   sliderContainer.style.display = 'none';
   effectValue.value = '';
+  window.noUiSlider.destroy();
 });
 
 effectChrome.addEventListener('click', function () {
@@ -194,4 +195,4 @@ effectHeat.addEventListener('click', function () {
   });
 });
 
-export {uploadFileClose,uploadFileOpen};
+export {uploadFileOpen,imgUploadPreview};

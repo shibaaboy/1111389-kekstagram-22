@@ -1,4 +1,6 @@
-import {uploadFileOpen} from './picture.js';
+import {
+  uploadFileOpen
+} from './picture.js';
 
 let imgUploadForm = document.querySelector('.img-upload__form');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
@@ -12,11 +14,9 @@ imgUploadForm.addEventListener('submit', (evt) => {
   fetch('https://22.javascript.pages.academy/kekstagram', {
     method: 'POST',
     body: formData,
-  },
-  )
+  })
     .then((response) => {
       if (response.ok) {
-        alert('220202020202022000');
         const successElement = successTemplate.cloneNode(true);
         mainBlock.appendChild(successElement);
         uploadFileOpen.classList.add('hidden');
@@ -36,8 +36,28 @@ imgUploadForm.addEventListener('submit', (evt) => {
             successElement.remove();
           }
         });
+      } else {
+        const errorElement = errorTemplate.cloneNode(true);
+        mainBlock.appendChild(errorElement);
+        uploadFileOpen.classList.add('hidden');
+        const closeErrorButton = document.querySelector('.error__button');
+        document.addEventListener('click', function (evt) {
+          if (evt.target !== errorElement) {
+            errorElement.remove();
+          }
+        });
+        document.addEventListener('keydown', function (evt) {
+          if (evt.keyCode === 27) {
+            errorElement.remove();
+          }
+        });
+        closeErrorButton.addEventListener('click', function (evt) {
+          if (evt.target !== errorElement) {
+            errorElement.remove();
+          }
+        });
       }
-      alert('404404040404044040404');
+    }).catch(() => {
       const errorElement = errorTemplate.cloneNode(true);
       mainBlock.appendChild(errorElement);
       uploadFileOpen.classList.add('hidden');
