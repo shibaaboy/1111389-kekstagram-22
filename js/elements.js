@@ -1,10 +1,14 @@
+/* global _:readonly */
 import './modal.js';
 import {
-  filterDefault
+  filterDefault,
+  filterRandom,
+  filterDiscussed
 } from './filter.js';
 
 const picturesElement = document.querySelector('.pictures');
 const picture = document.querySelector('#picture').content;
+const RERENDER_DELAY = 500;
 
 const pirctureFragment = document.createDocumentFragment();
 
@@ -15,11 +19,6 @@ fetch('https://22.javascript.pages.academy/kekstagram/data')
     return response.json();
   })
   .then((similarPictures) => {
-    // const picturesElements = document.querySelectorAll('#picture');
-    // for (let i = 0; i < 25; i++) {
-    //   console.log(picturesElements);
-    //   elem.removeChild(child);  тут писал document.rC(picturesElements); ошибка 
-    // }
     const renderPicture = (pictures) => {
       pictures.forEach((photo) => {
         const pictureElement = picture.cloneNode(true);
@@ -40,7 +39,9 @@ fetch('https://22.javascript.pages.academy/kekstagram/data')
       });
     };
     renderPicture(similarPictures);
-    filterDefault(similarPictures, renderPicture);
+    filterDefault(similarPictures, _.debounce(renderPicture, RERENDER_DELAY));
+    filterRandom(similarPictures, _.debounce(renderPicture, RERENDER_DELAY));
+    filterDiscussed(similarPictures, _.debounce(renderPicture, RERENDER_DELAY));
   })
   .catch((err) => {
     alert(err);
