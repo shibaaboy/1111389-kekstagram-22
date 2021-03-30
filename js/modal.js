@@ -89,7 +89,7 @@ const renderBigPhoto = (pictures, evt) => {
     let dataPhoto;
     for (let i = 0; i < pictures.length; i++) {
       const dataObject = pictures[i];
-      if (dataObject.id == id) {
+      if (dataObject.id === parseInt(id)) {
         dataPhoto = Object.assign({}, dataObject);
       }
     }
