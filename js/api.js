@@ -12,26 +12,26 @@ imgUploadForm.addEventListener('submit', (evt) => {
   const formData = new FormData(evt.target);
 
   fetch('https://22.javascript.pages.academy/kekstagram', {
-    method: 'POST',
-    body: formData,
-  })
+      method: 'POST',
+      body: formData,
+    })
     .then((response) => {
       if (response.ok) {
         const successElement = successTemplate.cloneNode(true);
         mainBlock.appendChild(successElement);
         uploadFileOpen.classList.add('hidden');
         const closeSuccessButton = document.querySelector('.success__button');
-        document.addEventListener('click', function (evt) {
+        document.addEventListener('click', (evt) => {
           if (evt.target !== successElement) {
             successElement.remove();
           }
         });
-        document.addEventListener('keydown', function (evt) {
+        document.addEventListener('keydown', (evt) => {
           if (evt.keyCode === 27) {
             successElement.remove();
           }
         });
-        closeSuccessButton.addEventListener('click', function (evt) {
+        closeSuccessButton.addEventListener('click', (evt) => {
           if (evt.target !== successElement) {
             successElement.remove();
           }
@@ -41,17 +41,17 @@ imgUploadForm.addEventListener('submit', (evt) => {
         mainBlock.appendChild(errorElement);
         uploadFileOpen.classList.add('hidden');
         const closeErrorButton = document.querySelector('.error__button');
-        document.addEventListener('click', function (evt) {
+        document.addEventListener('click', (evt) => {
           if (evt.target !== errorElement) {
             errorElement.remove();
           }
         });
-        document.addEventListener('keydown', function (evt) {
+        document.addEventListener('keydown', (evt) => {
           if (evt.keyCode === 27) {
             errorElement.remove();
           }
         });
-        closeErrorButton.addEventListener('click', function (evt) {
+        closeErrorButton.addEventListener('click', (evt) => {
           if (evt.target !== errorElement) {
             errorElement.remove();
           }
@@ -62,17 +62,17 @@ imgUploadForm.addEventListener('submit', (evt) => {
       mainBlock.appendChild(errorElement);
       uploadFileOpen.classList.add('hidden');
       const closeErrorButton = document.querySelector('.error__button');
-      document.addEventListener('click', function (evt) {
+      document.addEventListener('click', (evt) => {
         if (evt.target !== errorElement) {
           errorElement.remove();
         }
       });
-      document.addEventListener('keydown', function (evt) {
+      document.addEventListener('keydown', (evt) => {
         if (evt.keyCode === 27) {
           errorElement.remove();
         }
       });
-      closeErrorButton.addEventListener('click', function (evt) {
+      closeErrorButton.addEventListener('click', (evt) => {
         if (evt.target !== errorElement) {
           errorElement.remove();
         }

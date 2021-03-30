@@ -103,7 +103,7 @@ const renderBigPhoto = (pictures, evt) => {
   }
 }
 
-closePopup.addEventListener('click', function (evt) {
+closePopup.addEventListener('click', (evt) => {
   evt.preventDefault();
   popup.classList.add('hidden');
   body.classList.remove('modal-open');
@@ -111,7 +111,7 @@ closePopup.addEventListener('click', function (evt) {
   commentsLoader.classList.remove('hidden');
 });
 
-document.addEventListener('keydown', function (evt) {
+document.addEventListener('keydown', (evt) => {
   if (evt.keyCode === 27) {
     popup.classList.add('hidden');
     body.classList.remove('modal-open');

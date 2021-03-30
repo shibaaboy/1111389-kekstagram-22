@@ -22,9 +22,11 @@ uploadFile.addEventListener('click', () => {
   textDescription.style.border = '';
   textHashtags.value = '';
   textDescription.value = '';
+  uploadFileClose.addEventListener('click', closeUploadFile);
+  document.addEventListener('keydown', closeFromEscUploadFile);
 });
 
-uploadFileClose.addEventListener('click', function (evt) {
+const closeUploadFile = (evt) => {
   evt.preventDefault();
   uploadFileOpen.classList.add('hidden');
   body.classList.remove('modal-open');
@@ -39,18 +41,22 @@ uploadFileClose.addEventListener('click', function (evt) {
   textHashtags.value = '';
   textDescription.value = '';
   textDescription.style.border = '';
-});
+};
 
-document.addEventListener('keydown', function (evt) {
+uploadFileClose.removeEventListener('click', closeUploadFile);
+
+const closeFromEscUploadFile = (evt) => {
   if (evt.keyCode === 27) {
     if (evt.target !== textHashtags && evt.target !== textDescription) {
       uploadFileOpen.classList.add('hidden'); 
       uploadFile.value = '';
     }
   }
-});
+};
 
-scaleSmaller.addEventListener('click', function (evt) {
+document.removeEventListener('keydown', closeFromEscUploadFile);
+
+scaleSmaller.addEventListener('click', (evt) => {
   evt.preventDefault();
 
   let inputValue = scaleValue.value.slice(0, scaleValue.value.length - 1);
@@ -61,7 +67,7 @@ scaleSmaller.addEventListener('click', function (evt) {
   }
 });
 
-scaleBigger.addEventListener('click', function (evt) {
+scaleBigger.addEventListener('click', (evt) => {
   evt.preventDefault();
 
   let inputValue = scaleValue.value.slice(0, scaleValue.value.length - 1);
@@ -90,13 +96,13 @@ window.noUiSlider.create(effectSlider, {
   step: 1,
   connect: 'lower',
   format: {
-    to: function (value) {
+    to: (value) => {
       if (Number.isInteger(value)) {
         return value.toFixed(0);
       }
       return value.toFixed(1);
     },
-    from: function (value) {
+    from: (value) => {
       return parseFloat(value);
     },
   },
@@ -122,15 +128,15 @@ effectSlider.noUiSlider.on('update', (values, handle) => {
   }
 });
 
-effectNone.addEventListener('click', function () {
+effectNone.addEventListener('click', () => {
   imgUploadPreview.className = 'img-upload__preview';
   imgUploadPreview.style.removeProperty('filter');
   sliderContainer.style.display = 'none';
   effectValue.value = '';
-  window.noUiSlider.destroy();
+  window.noUiSlider.destroy;
 });
 
-effectChrome.addEventListener('click', function () {
+effectChrome.addEventListener('click', () => {
   imgUploadPreview.className = 'img-upload__preview effects__preview--chrome';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -143,7 +149,7 @@ effectChrome.addEventListener('click', function () {
   });
 });
 
-effectSepia.addEventListener('click', function () {
+effectSepia.addEventListener('click', () => {
   imgUploadPreview.className = 'img-upload__preview effects__preview--sepia';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -156,7 +162,7 @@ effectSepia.addEventListener('click', function () {
   });
 });
 
-effectMarvin.addEventListener('click', function () {
+effectMarvin.addEventListener('click', () => {
   imgUploadPreview.className = 'img-upload__preview effects__preview--marvin';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -169,7 +175,7 @@ effectMarvin.addEventListener('click', function () {
   });
 });
 
-effectPhobos.addEventListener('click', function () {
+effectPhobos.addEventListener('click', () => {
   imgUploadPreview.className = 'img-upload__preview effects__preview--phobos';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -182,7 +188,7 @@ effectPhobos.addEventListener('click', function () {
   });
 });
 
-effectHeat.addEventListener('click', function () {
+effectHeat.addEventListener('click', () => {
   imgUploadPreview.className = 'img-upload__preview effects__preview--heat';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
