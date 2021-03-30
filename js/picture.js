@@ -201,4 +201,5 @@ effectHeat.addEventListener('click', () => {
   });
 });
 
+
 export {uploadFileOpen,imgUploadPreview};
