@@ -1,5 +1,5 @@
 /* global _:readonly */
-import './modal.js';
+import {renderBigPhoto } from './modal.js';
 import {
   filterDefault,
   filterRandom,
@@ -29,13 +29,10 @@ fetch('https://22.javascript.pages.academy/kekstagram/data')
         picturesElement.appendChild(pictureElement);
 
         let pictureNode = picturesElement.lastElementChild;
-
-        pictureNode.setAttribute('data-likes', photo.likes);
-        pictureNode.setAttribute('data-comments', photo.comments.length);
-        pictureNode.setAttribute('data-avatar', photo.comments[0].avatar);
-        pictureNode.setAttribute('data-name', photo.comments[0].name);
-        pictureNode.setAttribute('data-message', photo.comments[0].message);
-        pictureNode.setAttribute('data-description', photo.description);
+        pictureNode.setAttribute('data-id', photo.id);
+        pictureNode.addEventListener('click', (evt) => {
+          renderBigPhoto(pictures, evt);
+        });
       });
     };
     renderPicture(similarPictures);
