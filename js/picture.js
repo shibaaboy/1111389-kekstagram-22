@@ -44,10 +44,10 @@ uploadFileClose.addEventListener('click', function (evt) {
 document.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 27) {
     if (evt.target !== textHashtags && evt.target !== textDescription) {
-      uploadFileOpen.classList.add('hidden');
+      uploadFileOpen.classList.add('hidden'); 
+      uploadFile.value = '';
     }
   }
-  uploadFile.value = '';
 });
 
 scaleSmaller.addEventListener('click', function (evt) {

@@ -58,7 +58,24 @@ const createComments = (comments) => {
 
 commentsLoader.addEventListener('click', (evt) => {
   evt.preventDefault();
-  //не знааааююю...
+  let commentsList = socialComments.querySelectorAll('.social__comment');
+  const commentsLength = socialComments.querySelectorAll('.social__comment').length;
+  const hiddenCommentsLength = socialComments.querySelectorAll('.social__comment.hidden').length;
+  const commentsCount = commentsLength - hiddenCommentsLength;
+  if (commentsCount > 0) {
+    if (hiddenCommentsLength <= 5) {
+      for (let i = commentsCount; i < commentsCount + hiddenCommentsLength; i++) {
+        commentsList[i].classList.remove('hidden');
+        commentCount.textContent = `${commentsLength} из ${commentsLength} комментариев`;
+      }
+      commentsLoader.classList.add('hidden');
+    } else {
+      for (let i = commentsCount; i < commentsCount + 5; i++) {
+        commentsList[i].classList.remove('hidden');
+        commentCount.textContent = `${commentsLength - hiddenCommentsLength + 5} из ${commentsLength} комментариев`;
+      }
+    }
+  }
 })
 
 const renderBigPhoto = (pictures, evt) => {
