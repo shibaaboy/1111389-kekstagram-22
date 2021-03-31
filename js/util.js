@@ -7,21 +7,21 @@ function getRandomIntInclusive(min, max) {
 
 
 function getRandomArrayInt(min, max) {
-  let numReserve = []
-  while (numReserve.length < 25) {
+  let numbersReserve = []
+  while (numbersReserve.length < 25) {
     let randomNumber = getRandomIntInclusive(min, max);
     let found = false;
-    for (let i = 0; i < numReserve.length; i++) {
-      if (numReserve[i] === randomNumber) {
+    for (let i = 0; i < numbersReserve.length; i++) {
+      if (numbersReserve[i] === randomNumber) {
         found = true;
         break;
       }
     }
     if (!found) {
-      numReserve[numReserve.length] = randomNumber;
+      numbersReserve[numbersReserve.length] = randomNumber;
     }
   }
-  return numReserve;
+  return numbersReserve;
 }
 
 export {getRandomIntInclusive, getRandomArrayInt};

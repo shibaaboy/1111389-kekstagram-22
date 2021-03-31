@@ -10,7 +10,7 @@ let scaleValue = document.querySelector('.scale__control--value');
 let imgUploadPreview = document.querySelector('.img-upload__preview');
 let sliderContainer = document.querySelector('.effect-level');
 
-uploadFile.addEventListener('click', () => {
+const openUploadFile = () => {
   uploadFileOpen.classList.remove('hidden');
   body.classList.add('modal-open');
   scaleValue.value = '100%';
@@ -24,7 +24,17 @@ uploadFile.addEventListener('click', () => {
   textDescription.value = '';
   uploadFileClose.addEventListener('click', closeUploadFile);
   document.addEventListener('keydown', closeFromEscUploadFile);
-});
+  effectChrome.addEventListener('click', changeEffectChrome);
+  effectNone.addEventListener('click', changeEffectNone);
+  effectSepia.addEventListener('click', changeEffectSepia);
+  effectMarvin.addEventListener('click', changeEffectMarvin);
+  effectPhobos.addEventListener('click', changeEffectPhobos);
+  effectHeat.addEventListener('click', changeEffectHeat);
+  scaleSmaller.addEventListener('click', ControlScaleSmaller);
+  scaleBigger.addEventListener('click', ControlScaleBigger);
+};
+
+uploadFile.addEventListener('click', openUploadFile);
 
 const closeUploadFile = (evt) => {
   evt.preventDefault();
@@ -41,9 +51,16 @@ const closeUploadFile = (evt) => {
   textHashtags.value = '';
   textDescription.value = '';
   textDescription.style.border = '';
+  uploadFileClose.removeEventListener('click', closeUploadFile);
+  effectChrome.removeEventListener('click', changeEffectChrome);
+  effectNone.removeEventListener('click', changeEffectNone);
+  effectSepia.removeEventListener('click', changeEffectSepia);
+  effectMarvin.removeEventListener('click', changeEffectMarvin);
+  effectPhobos.removeEventListener('click', changeEffectPhobos);
+  effectHeat.removeEventListener('click', changeEffectHeat);
+  scaleSmaller.removeEventListener('click', ControlScaleSmaller);
+  scaleBigger.removeEventListener('click', ControlScaleBigger);
 };
-
-uploadFileClose.removeEventListener('click', closeUploadFile);
 
 const closeFromEscUploadFile = (evt) => {
   if (evt.keyCode === 27) {
@@ -51,12 +68,11 @@ const closeFromEscUploadFile = (evt) => {
       uploadFileOpen.classList.add('hidden'); 
       uploadFile.value = '';
     }
+    document.removeEventListener('keydown', closeFromEscUploadFile);
   }
 };
 
-document.removeEventListener('keydown', closeFromEscUploadFile);
-
-scaleSmaller.addEventListener('click', (evt) => {
+const ControlScaleSmaller = (evt) => {
   evt.preventDefault();
 
   let inputValue = scaleValue.value.slice(0, scaleValue.value.length - 1);
@@ -65,9 +81,9 @@ scaleSmaller.addEventListener('click', (evt) => {
     scaleValue.value = inputValue - 25 + '%';
     imgUploadPreview.style.transform = 'scale(' + (inputValue - 25) / 100 + ')';
   }
-});
+};
 
-scaleBigger.addEventListener('click', (evt) => {
+const ControlScaleBigger = (evt) => {
   evt.preventDefault();
 
   let inputValue = scaleValue.value.slice(0, scaleValue.value.length - 1);
@@ -76,7 +92,7 @@ scaleBigger.addEventListener('click', (evt) => {
     scaleValue.value = Number(inputValue) + 25 + '%';
     imgUploadPreview.style.transform = 'scale(' + (Number(inputValue) + 25) / 100 + ')';
   }
-});
+};
 
 let effectSlider = document.querySelector('.effect-level__slider');
 let effectValue = document.querySelector('.effect-level__value');
@@ -96,13 +112,13 @@ window.noUiSlider.create(effectSlider, {
   step: 1,
   connect: 'lower',
   format: {
-    to: (value) => {
+    to: function (value) {
       if (Number.isInteger(value)) {
         return value.toFixed(0);
       }
       return value.toFixed(1);
     },
-    from: (value) => {
+    from: function (value) {
       return parseFloat(value);
     },
   },
@@ -128,15 +144,16 @@ effectSlider.noUiSlider.on('update', (values, handle) => {
   }
 });
 
-effectNone.addEventListener('click', () => {
+const changeEffectNone = () => {
   imgUploadPreview.className = 'img-upload__preview';
   imgUploadPreview.style.removeProperty('filter');
   sliderContainer.style.display = 'none';
   effectValue.value = '';
   window.noUiSlider.destroy;
-});
+};
 
-effectChrome.addEventListener('click', () => {
+
+const changeEffectChrome = () => {
   imgUploadPreview.className = 'img-upload__preview effects__preview--chrome';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -147,9 +164,10 @@ effectChrome.addEventListener('click', () => {
     start: 0.1,
     step: 0.1,
   });
-});
+};
 
-effectSepia.addEventListener('click', () => {
+
+const changeEffectSepia = () => {
   imgUploadPreview.className = 'img-upload__preview effects__preview--sepia';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -160,9 +178,10 @@ effectSepia.addEventListener('click', () => {
     start: 0.1,
     step: 0.1,
   });
-});
+};
 
-effectMarvin.addEventListener('click', () => {
+
+const changeEffectMarvin = () => {
   imgUploadPreview.className = 'img-upload__preview effects__preview--marvin';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -173,9 +192,10 @@ effectMarvin.addEventListener('click', () => {
     start: 1,
     step: 1,
   });
-});
+};
 
-effectPhobos.addEventListener('click', () => {
+
+const changeEffectPhobos = () => {
   imgUploadPreview.className = 'img-upload__preview effects__preview--phobos';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -186,9 +206,10 @@ effectPhobos.addEventListener('click', () => {
     start: 0.1,
     step: 0.1,
   });
-});
+};
 
-effectHeat.addEventListener('click', () => {
+
+const changeEffectHeat = () => {
   imgUploadPreview.className = 'img-upload__preview effects__preview--heat';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -199,7 +220,6 @@ effectHeat.addEventListener('click', () => {
     start: 1,
     step: 0.1,
   });
-});
-
+};
 
 export {uploadFileOpen,imgUploadPreview};

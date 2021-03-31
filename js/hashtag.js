@@ -1,6 +1,7 @@
 const textHashtags = document.querySelector('.text__hashtags');
 
-textHashtags.addEventListener('input', () => {
+
+const inputTextHashtags = () => {
   let textHashtagsArr = textHashtags.value.trim().toLowerCase().split(/ +/g);
   let reg = /^#[0-9a-zA-Zа-яА-Я]+$/;
   for (let i = 0; i < textHashtagsArr.length; i++) {
@@ -34,13 +35,15 @@ textHashtags.addEventListener('input', () => {
       textHashtags.style.border = '';
     }
   }
-
   textHashtags.reportValidity();
-});
+};
+
+textHashtags.addEventListener('input', inputTextHashtags);
+
 
 const textDescription = document.querySelector('.text__description');
 
-textDescription.addEventListener('input', () => {
+const inputtextDescription =  () => {
   let textDescriptionArr = textDescription.value.toLowerCase();
 
   for (let i = 0; i < textDescriptionArr.length; i++) {
@@ -54,6 +57,9 @@ textDescription.addEventListener('input', () => {
     }
     textDescription.reportValidity();
   }
-});
+};
+
+textDescription.addEventListener('input', inputtextDescription);
+
 
 export {textHashtags,textDescription};
