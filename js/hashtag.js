@@ -2,7 +2,7 @@ const textHashtags = document.querySelector('.text__hashtags');
 
 const inputTextHashtags = () => {
   let textHashtagsArray = textHashtags.value.trim().toLowerCase().split(/ +/g);
-  let reg = /^#[0-9a-zA-Zа-яА-Я]+$/;
+  let regular = /^#[0-9a-zA-Zа-яА-Я]+$/;
   for (let i = 0; i < textHashtagsArray.length; i++) {
     if (textHashtagsArray[i][0] !== '#') {
       textHashtags.setCustomValidity('Хэш-тег начинается с решётки');
@@ -24,7 +24,7 @@ const inputTextHashtags = () => {
       textHashtags.setCustomValidity('Один и тот же хэш-тег не может быть использован дважды');
       textHashtags.classList.add('errorClass');
       textHashtags.style.border = '3px solid red';
-    } else if (textHashtagsArray[i].search(reg) === -1) {
+    } else if (textHashtagsArray[i].search(regular) === -1) {
       textHashtags.setCustomValidity('Строка после решётки должна состоять из букв и чисел');
       textHashtags.classList.add('errorClass');
       textHashtags.style.border = '3px solid red';
