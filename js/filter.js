@@ -1,3 +1,4 @@
+/* global _:readonly */
 import {
   getRandomIntInclusive
 } from './util.js';
@@ -6,6 +7,7 @@ let filtersButtonsElements = document.querySelectorAll('.img-filters__button');
 let defaultFilterButton = document.querySelector('#filter-default');
 let randomFilterButton = document.querySelector('#filter-random');
 let discussedFilterButton = document.querySelector('#filter-discussed');
+const RERENDER_DELAY = 500;
 
 const sortByQuantityComments = (photoA, photoB) => photoB.comments.length - photoA.comments.length;
 
@@ -17,16 +19,16 @@ const clearPicturesContainer = () => {
 };
 
 const filterDefault = (photos, callback) => {
-  defaultFilterButton.addEventListener('click', () => {
+  defaultFilterButton.addEventListener('click', _.debounce(() => {
     clearPicturesContainer();
     filtersButtonsElements.forEach(element => element.classList.remove('img-filters__button--active'));
     defaultFilterButton.classList.add('img-filters__button--active');
     callback(photos);
-  });
+  }, RERENDER_DELAY));
 }
 
 const filterRandom = (photos, callback) => {
-  randomFilterButton.addEventListener('click', () => {
+  randomFilterButton.addEventListener('click', _.debounce(() => {
     clearPicturesContainer();
     filtersButtonsElements.forEach(element => element.classList.remove('img-filters__button--active'));
     randomFilterButton.classList.add('img-filters__button--active');
@@ -39,17 +41,17 @@ const filterRandom = (photos, callback) => {
       newArray.push(photo[0]);
     }
     callback(newArray);
-  });
+  }, RERENDER_DELAY));
 }
 
 const filterDiscussed = (photos, callback) => {
-  discussedFilterButton.addEventListener('click', () => {
+  discussedFilterButton.addEventListener('click', _.debounce(() => {
     clearPicturesContainer();
     filtersButtonsElements.forEach(element => element.classList.remove('img-filters__button--active'));
     discussedFilterButton.classList.add('img-filters__button--active');
     let newArray = photos.slice().sort(sortByQuantityComments);
     callback(newArray);
-  });
+  }, RERENDER_DELAY));
 }
 
 export {

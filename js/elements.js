@@ -1,4 +1,4 @@
-/* global _:readonly */
+
 import {renderBigPhoto } from './modal.js';
 import {
   filterDefault,
@@ -8,7 +8,6 @@ import {
 
 const picturesElement = document.querySelector('.pictures');
 const picture = document.querySelector('#picture').content;
-const RERENDER_DELAY = 500;
 
 const pirctureFragment = document.createDocumentFragment();
 
@@ -36,9 +35,9 @@ fetch('https://22.javascript.pages.academy/kekstagram/data')
       });
     };
     renderPicture(similarPictures);
-    filterDefault(similarPictures, _.debounce(renderPicture, RERENDER_DELAY));
-    filterRandom(similarPictures, _.debounce(renderPicture, RERENDER_DELAY));
-    filterDiscussed(similarPictures, _.debounce(renderPicture, RERENDER_DELAY));
+    filterDefault(similarPictures, renderPicture);
+    filterRandom(similarPictures, renderPicture);
+    filterDiscussed(similarPictures, renderPicture);
   })
   .catch((err) => {
     alert(err);
