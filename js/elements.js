@@ -1,4 +1,3 @@
-
 import {renderBigPhoto } from './modal.js';
 import {
   filterDefault,

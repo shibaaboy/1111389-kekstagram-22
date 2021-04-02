@@ -21,61 +21,99 @@ imgUploadForm.addEventListener('submit', (evt) => {
         mainBlock.appendChild(successElement);
         uploadFileOpen.classList.add('hidden');
         const closeSuccessButton = document.querySelector('.success__button');
-        document.addEventListener('click', (evt) => {
-          if (evt.target !== successElement) {
+
+        const onDocumentSuccessClick = (evt) => {
+          if (evt.target === successElement) {
             successElement.remove();
           }
-        });
-        document.addEventListener('keydown', (evt) => {
+          document.removeEventListener('click',onDocumentSuccessClick);
+        };
+
+        document.addEventListener('click',onDocumentSuccessClick);
+        
+        const onDocumentSuccessKeydown = (evt) => {
           if (evt.keyCode === 27) {
             successElement.remove();
           }
-        });
-        closeSuccessButton.addEventListener('click', (evt) => {
+          document.removeEventListener('keydown',onDocumentSuccessKeydown);
+        };
+
+        document.addEventListener('keydown',onDocumentSuccessKeydown);
+      
+        const onCloseSuccessButtonClick = (evt) => {
           if (evt.target !== successElement) {
             successElement.remove();
           }
-        });
+          closeSuccessButton.removeEventListener('click',onCloseSuccessButtonClick);
+
+        };
+
+        closeSuccessButton.addEventListener('click',onCloseSuccessButtonClick);
+        
       } else {
         const errorElement = errorTemplate.cloneNode(true);
         mainBlock.appendChild(errorElement);
         uploadFileOpen.classList.add('hidden');
         const closeErrorButton = document.querySelector('.error__button');
-        document.addEventListener('click', (evt) => {
-          if (evt.target !== errorElement) {
+
+        const onDocumentErrorClick = (evt) => {
+          if (evt.target === errorElement) {
             errorElement.remove();
           }
-        });
-        document.addEventListener('keydown', (evt) => {
+          document.removeEventListener('click', onDocumentErrorClick);
+        };
+
+        document.addEventListener('click', onDocumentErrorClick);
+        
+        const onDocumentErrorKeydown = (evt) => {
           if (evt.keyCode === 27) {
             errorElement.remove();
           }
-        });
-        closeErrorButton.addEventListener('click', (evt) => {
+          document.removeEventListener('keydown', onDocumentErrorKeydown);
+        };
+
+        document.addEventListener('keydown', onDocumentErrorKeydown);
+        
+        const onCloseErrorButtonClick = (evt) => {
           if (evt.target !== errorElement) {
             errorElement.remove();
           }
-        });
+          closeErrorButton.removeEventListener('click', onCloseErrorButtonClick);
+        };
+
+        closeErrorButton.addEventListener('click', onCloseErrorButtonClick);
       }
     }).catch(() => {
       const errorElement = errorTemplate.cloneNode(true);
       mainBlock.appendChild(errorElement);
       uploadFileOpen.classList.add('hidden');
       const closeErrorButton = document.querySelector('.error__button');
-      document.addEventListener('click', (evt) => {
-        if (evt.target !== errorElement) {
+      
+      const onDocumentErrorClick = (evt) => {
+        if (evt.target === errorElement) {
           errorElement.remove();
         }
-      });
-      document.addEventListener('keydown', (evt) => {
+        document.removeEventListener('click', onDocumentErrorClick);
+      };
+
+      document.addEventListener('click', onDocumentErrorClick);
+
+      const onDocumentErrorKeydown = (evt) => {
         if (evt.keyCode === 27) {
           errorElement.remove();
         }
-      });
-      closeErrorButton.addEventListener('click', (evt) => {
+        document.removeEventListener('keydown', onDocumentErrorKeydown);
+      };
+      
+      document.addEventListener('keydown', onDocumentErrorKeydown);
+
+      const onCloseErrorButtonClick = (evt) => {
         if (evt.target !== errorElement) {
           errorElement.remove();
         }
-      });
+        closeErrorButton.removeEventListener('click', onCloseErrorButtonClick);
+      };
+
+      closeErrorButton.addEventListener('click', onCloseErrorButtonClick);
     })
 });

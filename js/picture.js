@@ -22,21 +22,13 @@ const openUploadFile = () => {
   textDescription.style.border = '';
   textHashtags.value = '';
   textDescription.value = '';
-  uploadFileClose.addEventListener('click', closeUploadFile);
-  document.addEventListener('keydown', closeFromEscUploadFile);
-  effectChrome.addEventListener('click', changeEffectChrome);
-  effectNone.addEventListener('click', changeEffectNone);
-  effectSepia.addEventListener('click', changeEffectSepia);
-  effectMarvin.addEventListener('click', changeEffectMarvin);
-  effectPhobos.addEventListener('click', changeEffectPhobos);
-  effectHeat.addEventListener('click', changeEffectHeat);
-  scaleSmaller.addEventListener('click', ControlScaleSmaller);
-  scaleBigger.addEventListener('click', ControlScaleBigger);
+  uploadFileClose.addEventListener('click', onUploadFileCloseClick);
+  document.addEventListener('keydown', onDocumentUploadFileKeydown);
 };
 
 uploadFile.addEventListener('click', openUploadFile);
 
-const closeUploadFile = (evt) => {
+const onUploadFileCloseClick = (evt) => {
   evt.preventDefault();
   uploadFileOpen.classList.add('hidden');
   body.classList.remove('modal-open');
@@ -51,28 +43,20 @@ const closeUploadFile = (evt) => {
   textHashtags.value = '';
   textDescription.value = '';
   textDescription.style.border = '';
-  uploadFileClose.removeEventListener('click', closeUploadFile);
-  effectChrome.removeEventListener('click', changeEffectChrome);
-  effectNone.removeEventListener('click', changeEffectNone);
-  effectSepia.removeEventListener('click', changeEffectSepia);
-  effectMarvin.removeEventListener('click', changeEffectMarvin);
-  effectPhobos.removeEventListener('click', changeEffectPhobos);
-  effectHeat.removeEventListener('click', changeEffectHeat);
-  scaleSmaller.removeEventListener('click', ControlScaleSmaller);
-  scaleBigger.removeEventListener('click', ControlScaleBigger);
+  uploadFileClose.removeEventListener('click', onUploadFileCloseClick);
 };
 
-const closeFromEscUploadFile = (evt) => {
+const onDocumentUploadFileKeydown = (evt) => {
   if (evt.keyCode === 27) {
     if (evt.target !== textHashtags && evt.target !== textDescription) {
       uploadFileOpen.classList.add('hidden'); 
       uploadFile.value = '';
     }
-    document.removeEventListener('keydown', closeFromEscUploadFile);
+    document.removeEventListener('keydown', onDocumentUploadFileKeydown);
   }
 };
 
-const ControlScaleSmaller = (evt) => {
+scaleSmaller.addEventListener('click', function (evt) {
   evt.preventDefault();
 
   let inputValue = scaleValue.value.slice(0, scaleValue.value.length - 1);
@@ -81,9 +65,9 @@ const ControlScaleSmaller = (evt) => {
     scaleValue.value = inputValue - 25 + '%';
     imgUploadPreview.style.transform = 'scale(' + (inputValue - 25) / 100 + ')';
   }
-};
+});
 
-const ControlScaleBigger = (evt) => {
+scaleBigger.addEventListener('click', function (evt) {
   evt.preventDefault();
 
   let inputValue = scaleValue.value.slice(0, scaleValue.value.length - 1);
@@ -92,7 +76,7 @@ const ControlScaleBigger = (evt) => {
     scaleValue.value = Number(inputValue) + 25 + '%';
     imgUploadPreview.style.transform = 'scale(' + (Number(inputValue) + 25) / 100 + ')';
   }
-};
+});
 
 let effectSlider = document.querySelector('.effect-level__slider');
 let effectValue = document.querySelector('.effect-level__value');
@@ -144,16 +128,15 @@ effectSlider.noUiSlider.on('update', (values, handle) => {
   }
 });
 
-const changeEffectNone = () => {
+effectNone.addEventListener('click', function () {
   imgUploadPreview.className = 'img-upload__preview';
   imgUploadPreview.style.removeProperty('filter');
   sliderContainer.style.display = 'none';
   effectValue.value = '';
   window.noUiSlider.destroy;
-};
+});
 
-
-const changeEffectChrome = () => {
+effectChrome.addEventListener('click', function () {
   imgUploadPreview.className = 'img-upload__preview effects__preview--chrome';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -164,10 +147,9 @@ const changeEffectChrome = () => {
     start: 0.1,
     step: 0.1,
   });
-};
+});
 
-
-const changeEffectSepia = () => {
+effectSepia.addEventListener('click', function () {
   imgUploadPreview.className = 'img-upload__preview effects__preview--sepia';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -178,10 +160,9 @@ const changeEffectSepia = () => {
     start: 0.1,
     step: 0.1,
   });
-};
+});
 
-
-const changeEffectMarvin = () => {
+effectMarvin.addEventListener('click', function () {
   imgUploadPreview.className = 'img-upload__preview effects__preview--marvin';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -192,10 +173,9 @@ const changeEffectMarvin = () => {
     start: 1,
     step: 1,
   });
-};
+});
 
-
-const changeEffectPhobos = () => {
+effectPhobos.addEventListener('click', function () {
   imgUploadPreview.className = 'img-upload__preview effects__preview--phobos';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -206,10 +186,9 @@ const changeEffectPhobos = () => {
     start: 0.1,
     step: 0.1,
   });
-};
+});
 
-
-const changeEffectHeat = () => {
+effectHeat.addEventListener('click', function () {
   imgUploadPreview.className = 'img-upload__preview effects__preview--heat';
   sliderContainer.style.display = 'block';
   effectSlider.noUiSlider.updateOptions({
@@ -220,6 +199,6 @@ const changeEffectHeat = () => {
     start: 1,
     step: 0.1,
   });
-};
+});
 
 export {uploadFileOpen,imgUploadPreview};

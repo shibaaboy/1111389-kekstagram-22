@@ -56,7 +56,7 @@ const createComments = (comments) => {
   }
 };
 
-const clickCommentsLoader = (evt) => {
+const onCommentsLoaderClick = (evt) => {
   evt.preventDefault();
   let commentsList = socialComments.querySelectorAll('.social__comment');
   const commentsLength = socialComments.querySelectorAll('.social__comment').length;
@@ -78,7 +78,7 @@ const clickCommentsLoader = (evt) => {
   }
 }
 
-commentsLoader.addEventListener('click',clickCommentsLoader);
+commentsLoader.addEventListener('click',onCommentsLoaderClick);
 
 const renderBigPhoto = (pictures, evt) => {
   let parent = evt.target.parentElement;
@@ -103,27 +103,26 @@ const renderBigPhoto = (pictures, evt) => {
     socialCaption.textContent = dataPhoto.description;
     createComments(dataPhoto.comments);
   }
-  closePopup.addEventListener('click', doClosePopup);
-  document.addEventListener('keydown', closePopupFromEsc);
+  closePopup.addEventListener('click', onClosePopupClick);
+  document.addEventListener('keydown', onDocumentPopupKeydown);
 }
 
-const doClosePopup = (evt) => {
+const onClosePopupClick = (evt) => {
   evt.preventDefault();
   popup.classList.add('hidden');
   body.classList.remove('modal-open');
   commentCount.classList.remove('hidden');
   commentsLoader.classList.remove('hidden');
-  closePopup.removeEventListener('click', doClosePopup);
-  commentsLoader.removeEventListener('click',clickCommentsLoader);
+  closePopup.removeEventListener('click', onClosePopupClick);
 };
 
-const closePopupFromEsc = (evt) => {
+const onDocumentPopupKeydown = (evt) => {
   if (evt.keyCode === 27) {
     popup.classList.add('hidden');
     body.classList.remove('modal-open');
     commentCount.classList.remove('hidden');
     commentsLoader.classList.remove('hidden');
-    document.removeEventListener('keydown', closePopupFromEsc);
+    document.removeEventListener('keydown', onDocumentPopupKeydown);
   }
 };
 
